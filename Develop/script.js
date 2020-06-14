@@ -26,8 +26,8 @@ function writePassword() {
     for (i = 0; i < passwordNumber; i) {
       // Check for lower case confirmation
       if (lowerCaseConfirm) {
-      password += randomLetter().toLowerCase();
-      i++;
+        password += randomLetter().toLowerCase();
+        i++;
       }
       // check for upper case confirmation
       if (upperCaseConfirm) {
@@ -42,11 +42,11 @@ function writePassword() {
         password += randomSpecialCharacter();
         i++;
       }
-      }
+    }
       //console.log(randomNumber());
       //password += randomLetter();
     window.alert("Your password is " + password);
-    }
+  }
 
   //passwordText.value = password;
 
