@@ -39,7 +39,7 @@ function writePassword() {
         i++;
       }
       // start writePassword function over if no characters were selected
-      else {
+      if (!specialCharacterConfirm && !numericConfirm && !upperCaseConfirm && !lowerCaseConfirm) {
         window.alert("You must select at least one type of character.");
         writePassword();
       }
