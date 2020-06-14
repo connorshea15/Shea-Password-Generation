@@ -4,7 +4,8 @@
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-
+var test = window.prompt("What's your favorite color?");
+console.log(test);
 
 // Write password to the #password input
 function writePassword() {
