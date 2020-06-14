@@ -38,21 +38,17 @@ function writePassword() {
         password += randomNumber();
         i++;
       }
+      if (specialCharacterConfirm){
+        password += randomSpecialCharacter();
+        i++;
+      }
       }
       //console.log(randomNumber());
       //password += randomLetter();
     window.alert("Your password is " + password);
     }
 
-  
-
-
   //passwordText.value = password;
-
-
-
-
-
 
 var checkInput = function() {
   var passwordLength = window.prompt("How long would you like your password to be? (Between 8 and 128)");
@@ -63,18 +59,20 @@ var checkInput = function() {
       window.alert("Put in a value between 8 and 128.");
       checkInput();
     } else return passwordLength;
-
 };
 
 // function to create a random number between 0 and 9
 var randomNumber = function () {
   return Math.floor(Math.random() * 10);
 };
-
+// function to create a random letter
 var randomLetter = function() {
   return String.fromCharCode(Math.floor((Math.random() * 25) + 65));
 };
-
+// function to create a random special character
+var randomSpecialCharacter = function() {
+  return String.fromCharCode(Math.floor((Math.random() * 16) + 32));
+}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
