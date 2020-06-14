@@ -15,7 +15,7 @@ function writePassword() {
     // iterate through concatenating the password 
     for (i = 0; i < passwordNumber; i++) {
       console.log(randomNumber());
-      password += randomNumber();
+      password += randomLetter();
     }
     window.alert("Your password is " + password);
   
@@ -57,6 +57,11 @@ var checkInput = function() {
 var randomNumber = function () {
   return Math.floor(Math.random() * 10);
 };
+
+var randomLetter = function() {
+  return String.fromCharCode(Math.floor((Math.random() * 25) + 65));
+};
+
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
