@@ -1,6 +1,3 @@
-// Assignment code here
-
-
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
@@ -21,7 +18,6 @@ function writePassword() {
     // Ask the user if they want special characters included
     var specialCharacterConfirm = window.confirm("Would you like to include special characters in your password?");
   
-  console.log(passwordNumber);
     // iterate through concatenating the password 
     for (i = 0; i < passwordNumber; i) {
       // Check for lower case confirmation
@@ -34,22 +30,26 @@ function writePassword() {
         password += randomLetter();
         i++
       }
+      // check for numeric confirmation
       if (numericConfirm){
         password += randomNumber();
         i++;
       }
+      // check for upper special character confirmation
       if (specialCharacterConfirm){
         password += randomSpecialCharacter();
         i++;
       }
+      // start writePassword function over if no characters were selected
+      else {
+        window.alert("You must select at least one type of character.");
+        writePassword();
+      }
     }
-      //console.log(randomNumber());
-      //password += randomLetter();
     window.alert("Your password is " + password);
   }
 
-  //passwordText.value = password;
-
+// function to ensure user input about length of password will work
 var checkInput = function() {
   var passwordLength = window.prompt("How long would you like your password to be? (Between 8 and 128)");
   // make sure the input is good here 
