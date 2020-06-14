@@ -10,13 +10,10 @@ function writePassword() {
   //var passwordText = document.querySelector("#password");
   var password = "";
   // Ask the user how long the password should be
-  var passwordLength = window.prompt("How long would you like your password to be? (Between 8 and 128)");
-  // make sure the input is good here 
-   /* while (typeof passwordLength < 8 || passwordLength > 128) {
-      window.alert("Please put a numberic value between 8 and 128");
-    } */
-    passwordLength = parseInt(passwordLength);
-    for (i = 0; i < passwordLength; i++) {
+  var passwordNumber = checkInput();
+  console.log(passwordNumber);
+    // iterate through concatenating the password 
+    for (i = 0; i < passwordNumber; i++) {
       console.log(randomNumber());
       password += randomNumber();
     }
@@ -41,8 +38,18 @@ function writePassword() {
 
 }
 
-var checkInput = function() {
 
+
+
+var checkInput = function() {
+  var passwordLength = window.prompt("How long would you like your password to be? (Between 8 and 128)");
+  // make sure the input is good here 
+  // Turn that string user input into an integer
+    passwordLength = parseInt(passwordLength);
+    if (!Number.isInteger(passwordLength) || passwordLength < 8 || passwordLength > 128)  {
+      window.alert("Put in a value between 8 and 128.");
+      checkInput();
+    } else return passwordLength;
 
 };
 
