@@ -11,32 +11,45 @@ function writePassword() {
   var password = "";
   // Ask the user how long the password should be
   var passwordNumber = checkInput();
+  
+    // Ask the user if they want lowercase characters included
+    var lowerCaseConfirm = window.confirm("Would you like to include lower case characters in your password?");
+    // Ask the user if they want uppercase characters included
+    var upperCaseConfirm = window.confirm("Would you like to include upper case characters in your password?");
+    // Ask the user if they want numbers included 
+    var numericConfirm = window.confirm("Would you like to include numbers in your password?");
+    // Ask the user if they want special characters included
+    var specialCharacterConfirm = window.confirm("Would you like to include special characters in your password?");
+  
   console.log(passwordNumber);
     // iterate through concatenating the password 
-    for (i = 0; i < passwordNumber; i++) {
-      console.log(randomNumber());
-      password += randomLetter();
-    }
+    for (i = 0; i < passwordNumber; i) {
+      // Check for lower case confirmation
+      if (lowerCaseConfirm) {
+      password += randomLetter().toLowerCase();
+      i++;
+      }
+      // check for upper case confirmation
+      if (upperCaseConfirm) {
+        password += randomLetter();
+        i++
+      }
+      if (numericConfirm){
+        password += randomNumber();
+        i++;
+      }
+      }
+      //console.log(randomNumber());
+      //password += randomLetter();
     window.alert("Your password is " + password);
+    }
+
   
-  // Ask the user if they want lowercase characters included
-  var lowerCaseConfirm = window.confirm("Would you like to include lower case characters in your password?");
-  // Ask the user if they want uppercase characters included
-  var upperCaseConfirm = window.confirm("Would you like to include upper case characters in your password?");
-  // Ask the user if they want numbers included 
-  var numericConfirm = window.confirm("Would you like to include numbers in your password?");
-  // Ask the user if they want special characters included
-  var specialCharacterConfirm = window.confirm("Would you like to include special characters in your password?");
-  
-  console.log(passwordLength);
-  console.log(lowerCaseConfirm);
-  console.log(upperCaseConfirm);
-  console.log(numericConfirm);
-  console.log(specialCharacterConfirm);
+
 
   //passwordText.value = password;
 
-}
+
 
 
 
