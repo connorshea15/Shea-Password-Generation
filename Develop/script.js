@@ -39,10 +39,14 @@ function writePassword() {
         i++;
       }
       // start writePassword function over if no characters were selected
-      if (!specialCharacterConfirm && !numericConfirm && !upperCaseConfirm && !lowerCaseConfirm) {
+      else if (!specialCharacterConfirm && !numericConfirm && !upperCaseConfirm && !lowerCaseConfirm) {
         window.alert("You must select at least one type of character.");
         writePassword();
       }
+    }
+    // Have to make a correction here to slice off any string elements over the length specified by the user
+    if (i > passwordNumber) {
+      password = password.slice(0, passwordNumber);
     }
     window.alert("Your password is " + password);
   }
