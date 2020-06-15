@@ -38,7 +38,7 @@ function writePassword() {
  // Condition to start over if there are no acceptable characters defined by the user
   if (!specialCharacterConfirm && !numericConfirm && !upperCaseConfirm && !lowerCaseConfirm) {
     window.alert("You must select at least one type of character.");
-    writePassword();
+    return writePassword();
   } 
 
   // populate our password string by randomly selecting from a string full of our acceptable characters
