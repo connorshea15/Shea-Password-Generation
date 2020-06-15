@@ -1,11 +1,12 @@
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
-
 // Write password to the #password input
 function writePassword() {
+  // initialize empty string which will hold our password
   var password = "";
+  var passwordNumber = "";
   // Ask the user how long the password should be
-  var passwordNumber = checkInput();
+  passwordNumber = checkInput();
   
   // Ask the user if they want lowercase characters included
   var lowerCaseConfirm = window.confirm("Would you like to include lower case characters in your password?");
@@ -16,40 +17,38 @@ function writePassword() {
   // Ask the user if they want special characters included
   var specialCharacterConfirm = window.confirm("Would you like to include special characters in your password?");
   
-  // iterate through concatenating the password 
-  for (i = 0; i < passwordNumber; i) {
-    // Check for lower case confirmation
-    if (lowerCaseConfirm) {
-      password += randomLetter().toLowerCase();
-      i++;
-    }
-    // check for upper case confirmation
-    if (upperCaseConfirm) {
-      password += randomLetter();
-      i++
-    }
-    // check for numeric confirmation
-    if (numericConfirm){
-      password += randomNumber();
-      i++;
-    }
-    // check for upper special character confirmation
-    if (specialCharacterConfirm){
-      password += randomSpecialCharacter();
-      i++;
-    }
-    // start writePassword function over if no characters were selected
-    else if (!specialCharacterConfirm && !numericConfirm && !upperCaseConfirm && !lowerCaseConfirm) {
-      window.alert("You must select at least one type of character.");
-      writePassword();
-    }
+  // initialize a string that will hold all possible characters
+  acceptableCharacters = "";
+  if (lowerCaseConfirm) {
+    acceptableCharacters += "abcdefghijklmnopqrstuvwxyz";
   }
-  // Have to make a correction here to slice off any string elements over the length specified by the user
-  if (i > passwordNumber) {
-    password = password.slice(0, passwordNumber);
+  // check for upper case confirmation
+  if (upperCaseConfirm) {
+    acceptableCharacters += acceptableCharacters.toUpperCase();
   }
+  // check for numeric confirmation
+  if (numericConfirm){
+    acceptableCharacters += "1234567890";
+  }
+  // check for upper special character confirmation
+  if (specialCharacterConfirm){
+    acceptableCharacters += specialCharacterString();
+  }
+
+ // Condition to start over if there are no acceptable characters defined by the user
+  if (!specialCharacterConfirm && !numericConfirm && !upperCaseConfirm && !lowerCaseConfirm) {
+    window.alert("You must select at least one type of character.");
+    writePassword();
+  } 
+
+  // populate our password string by randomly selecting from a string full of our acceptable characters
+  for (i = 0; i < passwordNumber; i++) {
+    password += acceptableCharacters[Math.floor(Math.random() * acceptableCharacters.length)];
+  }
+
+  // Show them the password with a window alert
   window.alert("Your password is " + password);
-}
+} 
 
 // function to ensure user input about length of password will work
 var checkInput = function() {
@@ -63,19 +62,14 @@ var checkInput = function() {
   } else return passwordLength;
 };
 
-// function to create a random number between 0 and 9
-var randomNumber = function () {
-  return Math.floor(Math.random() * 10);
+//create string of special characters
+var specialCharacterString = function () {
+  var specialCharacters = "";
+  for (i = 32; i < 48; i++) {
+    specialCharacters += String.fromCharCode(i);
+  }
+  return specialCharacters;
 };
-// function to create a random letter
-var randomLetter = function() {
-  return String.fromCharCode(Math.floor((Math.random() * 25) + 65));
-};
-// function to create a random special character
-var randomSpecialCharacter = function() {
-  return String.fromCharCode(Math.floor((Math.random() * 16) + 32));
-}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
